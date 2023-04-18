@@ -6,7 +6,7 @@ const budgetController = require("./controllers/budget-controller");
 app.use(express.json());
 app.use(cors());
 
-app.use("/budget", budgetController);
+app.use("/transactions", budgetController);
 
 app.get("/", (req, res) => {
     res.send("Welcome to the Budget Back-end");

@@ -1,58 +1,58 @@
 const express = require("express");
-const budget = express.Router();
-const budgetArray = require("../models/budget-model");
+const transaction = express.Router();
+const transactionArray = require("../models/budget-model");
 
 // GET ALL
-budget.get("/", (req, res) => {
+transaction.get("/", (req, res) => {
     if (res) {
-        res.status(202).json(budgetArray);
+        res.status(202).json(transactionArray);
     } else {
         res.status(400).json({ error: "Model not found" });
     }
 });
 
 // INDIVIDUAL LOG
-budget.get("/:id", (req, res) => {
+transaction.get("/:id", (req, res) => {
     const { id } = req.params;
-    const budget = budgetArray[id];
+    const transaction = transactionArray[id];
 
-    if (budget) {
-        res.status(202).json(budget);
+    if (transaction) {
+        res.status(202).json(transaction);
     } else {
         res.redirect(302, "/*");
     }
 })
 
 // CREATE
-budget.post("/", (req, res) => {
-    const newBudgetLog = req.body;
-    budgetArray.push(newBudgetLog);
-    res.status(202).json({ success: true, payload: budgetArray });
+transaction.post("/", (req, res) => {
+    const newtransactionLog = req.body;
+    transactionArray.push(newtransactionLog);
+    res.status(202).json({ success: true, payload: transactionArray });
 });
 
 // UPDATE
-budget.put("/:id", (req, res) => {
+transaction.put("/:id", (req, res) => {
     const { id } = req.params;
-    const updatedBudgetLog = req.body;
+    const updatedtransactionLog = req.body;
 
-    if (budgetArray[id]) {
-        budgetArray[id] = updatedBudgetLog;
-        res.status(202).json({ success: true, payload: budgetArray[id] });
+    if (transactionArray[id]) {
+        transactionArray[id] = updatedtransactionLog;
+        res.status(202).json({ success: true, payload: transactionArray[id] });
     } else {
         res.status(404).json({ success: false, error: `There is no log with the id of ${id}` });
     }
 })
 
 // DELETE
-budget.delete("/:id", (req, res) => {
+transaction.delete("/:id", (req, res) => {
     const { id } = req.params;
 
-    if (budgetArray[id]) {
-        const deletedBudgetLog = budgetArray.splice(id, 1);
-        res.status(202).json({ success: true, payload: deletedBudgetLog });
+    if (transactionArray[id]) {
+        const deletedtransactionLog = transactionArray.splice(id, 1);
+        res.status(202).json({ success: true, payload: deletedtransactionLog });
     } else {
         res.status(404).json({ success: false, error: `There is no log with the id of ${id}` });
     }
 });
 
-module.exports = budget;
+module.exports = transaction;
