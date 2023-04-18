@@ -6,6 +6,7 @@ module.exports = [
         amount: 5000,
         category: "income",
         date: [2023, 1, 10],
+        deposit: true,
         id: 10001,
     },
     {
@@ -14,6 +15,7 @@ module.exports = [
         amount: 500,
         category: "savings",
         date: [2023, 1, 11],
+        deposit: false,
         id: 10002,
     },
     {
@@ -22,6 +24,7 @@ module.exports = [
         amount: 88,
         category: "bills",
         date: [2023, 1, 15],
+        deposit: false,
         id: 10003,
     },
     {
@@ -30,6 +33,7 @@ module.exports = [
         amount: 155,
         category: "bills",
         date: [2023, 1, 24],
+        deposit: false,
         id: 10004,
     },
 ];
